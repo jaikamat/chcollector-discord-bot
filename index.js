@@ -38,7 +38,7 @@ client.on('message', async message => {
         const titlePick = titleChoices[0];
 
         if (!titlePick) {
-            await message.channel.send(`We couldn't find any cards matching ${userTitle}. Sorry!`);
+            await message.channel.send(`We couldn't find any cards matching **${userTitle}**. Sorry!`);
             return;
         }
 
