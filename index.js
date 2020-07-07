@@ -5,10 +5,10 @@ const randomStatement = require('./serviceStatements');
 const { scryfallAutocomplete, getCardsFromChcollector } = require('./api');
 const parseQoh = require('./parseQoh');
 
-const PREFIX = '!chcollector';
+const PREFIX = '!inv';
 
 const createMessageLine = ({ foilQty, nonfoilQty, set_name }) => {
-    return `In stock: ${nonfoilQty} nonfoil, ${foilQty} foil from ${set_name}`
+    return `In stock: ${nonfoilQty} nonfoil, ${foilQty} foil from _${set_name}_`;
 }
 
 const transformDataIntoMessage = cards => {
@@ -49,7 +49,7 @@ client.on('message', async message => {
         const cards = await getCardsFromChcollector(titlePick);
 
         if (cards.length === 0) {
-            await message.channel.send('No results...sorry about that');
+            await message.channel.send('None in stock...sorry about that');
             return;
         }
 
