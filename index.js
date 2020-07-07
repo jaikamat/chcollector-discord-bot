@@ -37,6 +37,11 @@ client.on('message', async message => {
         const titleChoices = await scryfallAutocomplete(userTitle);
         const titlePick = titleChoices[0];
 
+        if (!titlePick) {
+            await message.channel.send(`We couldn't find any cards matching ${userTitle}. Sorry!`);
+            return;
+        }
+
         console.log(`User query: ${userTitle}, Title picked: ${titlePick}`);
 
         await message.channel.send(`You searched for **${titlePick}**. _${randomStatement()}_`);
