@@ -8,7 +8,7 @@ const parseQoh = require('./parseQoh');
 const PREFIX = '!inv';
 
 const createMessageLine = ({ foilQty, nonfoilQty, set_name }) => {
-    return `In stock: ${nonfoilQty} nonfoil, ${foilQty} foil from _${set_name}_`;
+    return `> In stock: ${nonfoilQty} nonfoil, ${foilQty} foil from _${set_name}_`;
 }
 
 const transformDataIntoMessage = cards => {
@@ -38,7 +38,7 @@ client.on('message', async message => {
         const titlePick = titleChoices[0];
 
         if (!titlePick) {
-            await message.channel.send(`We couldn't find any cards matching **${userTitle}**. Sorry!`);
+            await message.channel.send(`> We couldn't find any cards matching **${userTitle}**. Sorry!`);
             return;
         }
 
@@ -49,7 +49,7 @@ client.on('message', async message => {
         const cards = await getCardsFromChcollector(titlePick);
 
         if (cards.length === 0) {
-            await message.channel.send('None in stock...sorry about that');
+            await message.channel.send('> None in stock...sorry about that');
             return;
         }
 
